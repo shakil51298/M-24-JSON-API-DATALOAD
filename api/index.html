@@ -10,9 +10,42 @@
 <body>
     <h1>JSON</h1>
     <h2>JavaScrip Object Notation</h2>
-    <ul id="display-UserName">
-        
-    </ul>
+    <ol id="display-UserName">
+        <h4>User Email list</h4>
+    </ol>
+    <ol id="display-id">
+        <h4>User Name list</h4>
+    </ol>
+
+    <input id="title" type="text" placeholder="title">
+    <br>
+    <input id="body-content" type="text" placeholder="post what you want">
+    <br>
+    <input id="Identity" type="text" placeholder="id">
+    <br>
+    <button id="submitBtn">submit Post</button>
+    <script>
+        // const postsData = {title: "shakil",body: "shadat Hossain", userId: 12142 };
+        document.getElementById('submitBtn').addEventListener('click',function(){
+            const Title = document.getElementById('title').value;
+            const something = document.getElementById('body-content').value;
+            const iD = document.getElementById('Identity').value;
+            const myPost = {title: Title, body:something, userId: iD};
+            postNow(myPost)
+        })
+
+        function postNow(post) {
+            fetch('https://jsonplaceholder.typicode.com/posts', {
+                    method: 'POST',
+                    body: JSON.stringify(post),
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8',
+                    },
+                })
+                .then((response) => response.json())
+                .then((data) => console.log(data));
+        }
+    </script>
     <script src="/app.js"></script>
 </body>
 

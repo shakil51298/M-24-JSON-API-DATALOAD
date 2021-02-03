@@ -12,18 +12,27 @@
 //data load from Backend
 fetch('https://jsonplaceholder.typicode.com/users')
     .then(response => response.json())
-    .then(json => displayNames(json))
+    .then(json => userInfo(json))
 
-    function displayNames(users){
-        const userNames = users.map(user => user.username);
-        const ul = document.getElementById('display-UserName');
-        for (let i = 0; i < userNames.length; i++) {
-            const user = userNames[i];
-            const li = document.createElement("li");
-            li.innerText = user;
-            ul.appendChild(li);
-            
-        }
+function userInfo(userData) {
+    const userEmail = userData.map(x => x.email);
+    const ol = document.getElementById('display-UserName')
+    const displaId = document.getElementById('display-id')
+    for (let i = 0; i < userEmail.length; i++) {
+        const email = userEmail[i];
 
-
+        const li = document.createElement("li");
+        li.innerText = email;
+        ol.appendChild(li);
     }
+    const userId = userData.map(user => user.name);
+
+    for (let i = 0; i < userId.length; i++) {
+        const Id = userId[i];
+
+        const li = document.createElement("li");
+        li.innerText = Id;
+        displaId.appendChild(li);
+    }
+
+}
